@@ -35,8 +35,18 @@ var is_exists = (dir_path, file_name='') => {
 }
 
 // get file hash
-var get_file_hash = (data) => {
-    return file_hash = crypto.createHash('sha256').update(data).digest('hex');
+var get_hash = (data) => {
+    return getDigestHash(createHash().update(data));
+}
+
+// create a new hash
+var createHash = () => {
+    return crypto.createHash('sha256');
+}
+
+// get digested hash
+var getDigestHash = (hash) => {
+    return hash.digest('hex');
 }
 
 
@@ -88,9 +98,12 @@ var get_file_obj_path_detailse = (file_hash) => {
 
 // export modules
 module.exports = {
+    chunk_size: 8, //32*1024,
     create_path: create_path,
     is_exists: is_exists,
     get_obj_path_detailse: get_obj_path_detailse,
-    get_file_hash: get_file_hash,
+    get_hash: get_hash,
+    createHash: createHash,
+    getDigestHash: getDigestHash,
     get_file_obj_path_detailse: get_file_obj_path_detailse,
 }

@@ -1,1 +1,4 @@
 data/
+
+# to ignore test files
+*.file  
