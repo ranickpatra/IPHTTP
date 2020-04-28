@@ -83,19 +83,6 @@ var get_file_obj_path_detailse = (file_hash) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // export modules
 module.exports = {
     chunk_size: 8, //32*1024,
