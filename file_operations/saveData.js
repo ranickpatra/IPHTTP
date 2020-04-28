@@ -34,7 +34,7 @@ var save_file_obj = (data, file_data) => {
 // save tree
 var save_tree = (data) => {
     // save tree like an obj
-    save_obj(data);
+    return save_obj(data);
 }
 
 
