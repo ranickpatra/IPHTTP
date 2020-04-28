@@ -2,7 +2,7 @@ const fs = require('fs');
 const fileManager = require('./fileManager');
 
 // return a promise with a 
-var read = (file_hash) => {
+var read = (file_hash, readable_stream) => {
     // get file_obj path
     let file_obj_path = fileManager.get_file_obj_path_detailse(file_hash);
     // read trees list
@@ -11,17 +11,19 @@ var read = (file_hash) => {
     // get last tree hash
     let tree = trees[trees.length - 1].split('\t')[1];
 
-    let objs = fs.readFileSync(fileManager.get_obj_path_detailse(tree)['file_path'], 'utf-8')
-                                    .trim().split('\n');
-    
+    let objs = fs.readFileSync(fileManager.get_obj_path_detailse(tree)['file_path'], 'utf-8').trim().split('\n');
+
+
+    // read from each object    
     objs.forEach(obj => {
+        // get tdhe hash
         obj = obj.split('\t')[1];
-        process.stdout.write(
-            fs.readFileSync(
-                fileManager.get_obj_path_detailse(obj)['file_path'], 'utf-8'
-            )
-        );
+        // read content of file
+        let content = fs.readFileSync(fileManager.get_obj_path_detailse(obj)['file_path'], 'utf-8');
+        // put data into the stream
+        readable_stream.push(content);
     });
+
 
 
 }
