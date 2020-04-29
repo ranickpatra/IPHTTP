@@ -25,7 +25,7 @@ var read = (file_hash, readable_stream) => {
         readable_stream.push(content);
     });
 
-
+    readable_stream.push(null)
 
 }
 
