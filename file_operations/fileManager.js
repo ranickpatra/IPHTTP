@@ -2,6 +2,7 @@
 const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
+const mime = require('mime-types');
 
 // directory for save file_obj
 const file_obj_directory = 'data/file_objects';
@@ -82,6 +83,29 @@ var get_file_obj_path_detailse = (file_hash) => {
 
 
 
+// get mime type
+var get_file_meta_data = (file_hash) => {
+    // get file_obj path
+    let file_obj_path = get_file_obj_path_detailse(file_hash);
+    // read trees list
+    let trees = fs.readFileSync(file_obj_path['file_path']).toString().trim();
+    trees = trees.split('\n');
+    // get last tree hash
+    let file_name = trees[trees.length - 1].split('\t')[2];
+    let mime_type = mime.lookup(file_name);
+
+    if(mime_type == false) {
+        mime_type = 'text/plain';
+    }
+
+    // return data
+    return {
+        'name': file_name,
+        'mime': mime_type
+    }
+
+}
+
 
 // export modules
 module.exports = {
@@ -93,5 +117,6 @@ module.exports = {
     createHash: createHash,
     getDigestHash: getDigestHash,
     get_file_obj_path_detailse: get_file_obj_path_detailse,
+    get_file_meta_data: get_file_meta_data,
 }
 

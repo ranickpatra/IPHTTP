@@ -13,7 +13,7 @@ var add_file = (file_path) => {
         // save tree and get hash
         let tree_hash = fileOperations.saveData.save_tree(tree_data);
         // create data for file_obj
-        let file_obj_data = "tree\t" + tree_hash + "\n";
+        let file_obj_data = "tree\t" + tree_hash + "\t" + file_hashes['file_name'] + "\n";
         // save file object
         let file_hash =  fileOperations
                             .saveData.save_file_obj(file_obj_data, file_hashes['fileHash']);

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const fileManager = require('./fileManager');
+const path = require('path');
 
 
 // save file_obj
@@ -55,7 +56,8 @@ var save_objs = (file_path) => {
                 // return the hashes
                 return resolve({
                     'fileHash': fileManager.getDigestHash(file_hash),   // return the dugested hash
-                    'objHashes': objHashes
+                    'objHashes': objHashes,                 // hashes all object
+                    'file_name': path.basename(file_path),       // get the file name
                 });
             });
         } catch(error) {    // error

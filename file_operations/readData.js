@@ -2,7 +2,7 @@ const fs = require('fs');
 const fileManager = require('./fileManager');
 
 // return a promise with a 
-var read = (file_hash, readable_stream) => {
+var read = async (file_hash, readable_stream) => {
     // get file_obj path
     let file_obj_path = fileManager.get_file_obj_path_detailse(file_hash);
     // read trees list
@@ -13,8 +13,7 @@ var read = (file_hash, readable_stream) => {
 
     let objs = fs.readFileSync(fileManager.get_obj_path_detailse(tree)['file_path'])
                 .toString().trim().split('\n');
-
-
+                
     // read from each object    
     objs.forEach(obj => {
         // get tdhe hash

@@ -5,13 +5,19 @@ const http = require('http');
 const server = require('./server');
 
 
-// dataManager.addData.add_file('./teamviewer_15.5.3_amd64.deb');
+// dataManager.addData.add_file('./ii.jpg');
 
 
 
 server.server.startServer(8080, "Server started at port 8080.....", (res, content_hash, file_name) => {
-
-    res.writeHead(200, { 'Content-Type': 'text/plain' })
+    // get file meta data
+    let file_meta = file_operations.fileManager.get_file_meta_data(content_hash);
+    // write the head
+    res.writeHead(200, { 
+        'Content-Type': file_meta['mime'],
+        'Content-disposition': 'filename='+ (file_name != null ? file_name : file_meta['name'])
+     });
+    
     // cretae a readable stream
     const readableStream = new Stream.Readable({ read(size) { } });
     // pipe it to response
