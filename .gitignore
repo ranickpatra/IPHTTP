@@ -3,4 +3,12 @@ node_modules/
 data/
 
 # to ignore test files
-*.file  
+*.file
+
+
+
+# image files
+*.jpg
+*.png
+*.jpeg
+*.gif
