@@ -3,17 +3,17 @@ const dataManager = require('./dataManager');
 const Stream = require('stream');
 
 
-// dataManager.addData.add_file('./test.file');
+// dataManager.addData.add_file('./teamviewer_15.4.4445_amd64.deb');
 
-// create a readable stream
-var readableStream = new Stream.Readable();
-readableStream._read = () => {}
-// pipe the stream with a writable stream
-readableStream.pipe(process.stdout);
+// // create a readable stream
+// var readableStream = new Stream.Readable();
+// readableStream._read = () => {}
+// // pipe the stream with a writable stream
+// readableStream.pipe(process.stdout);
 
-// read required data
-dataManager.getData.read_file('4ce9558906b9ec9c8271154023a090d3d048a61818486f5d2c7b1985e3f28a80',
-                     readableStream);
+// // read required data
+// dataManager.getData.read_file('b1b3c97f0b6af71c57a4553aa3e073d6d2c57e983c05618da6e6b5866f06abb3',
+//                      readableStream);
 
 
 
